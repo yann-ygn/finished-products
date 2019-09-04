@@ -3,6 +3,7 @@
 #define FOOTSWITCH 4
 #define RELAY 3
 #define OK 2
+#define LED 1
 #define STARTUPSTATE 0
 
 long int now;
@@ -19,9 +20,11 @@ void setup()
     pinMode(STARTUPSTATE, INPUT_PULLUP);
     pinMode(RELAY, OUTPUT);
     pinMode(OK, OUTPUT);
+    pinMode(LED, OUTPUT);
 
     relayState = digitalRead(STARTUPSTATE);
     digitalWrite(RELAY, relayState);
+    digitalWrite(LED, relayState);
 }
 
 void loop()
@@ -36,6 +39,7 @@ void loop()
         digitalWrite(OK, HIGH);
         delay(5);
         digitalWrite(RELAY, relayState);
+        digitalWrite(LED, relayState);
         delay(5);
         digitalWrite(OK, LOW);
     }
